@@ -2,8 +2,10 @@ import { FC, useCallback, useState } from 'react'
 
 import hitokoto1Png from '@/assets/imgs/hitokoto_1.jpeg'
 import hitokoto2Png from '@/assets/imgs/hitokoto_2.jpeg'
+import hitokotoTemplatePng from '@/assets/imgs/hitokoto_template.jpeg'
 
 import styles from './App.module.css'
+import ImageArea from './ImageArea/ImageArea'
 
 const hitokotoList = [hitokoto1Png, hitokoto2Png]
 
@@ -28,12 +30,14 @@ const App = () => {
 
   return (
     <div className={styles.root}>
-      {imageIndex !== null && (
-        <div>
-          <img src={hitokotoList[imageIndex]} />
-        </div>
+      {imageIndex === null ? (
+        <ImageArea src={hitokotoTemplatePng} />
+      ) : (
+        <ImageArea src={hitokotoList[imageIndex]} />
       )}
-      <button onClick={onStartClick}>Start!</button>
+      <button className={styles.startButton} onClick={onStartClick}>
+        Start!
+      </button>
     </div>
   )
 }
