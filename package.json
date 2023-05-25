@@ -1,0 +1,48 @@
+{
+  "name": "d_community_frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "tsc",
+    "prettier": "prettier --write src",
+    "eslint": "eslint src --ext ts,tsx",
+    "eslint-fix": "npm run eslint -- --fix",
+    "stylelint": "stylelint 'src/**/*.css'",
+    "stylelint-fix": "npm run stylelint -- --fix",
+    "lint": "run-s eslint stylelint",
+    "lint-fix": "run-s eslint-fix stylelint-fix prettier",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "clsx": "^1.2.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^6.5.1",
+    "@types/crypto-js": "^4.1.1",
+    "@types/node": "18.11.9",
+    "@types/react": "18.0.25",
+    "@types/react-dom": "18.0.8",
+    "@types/react-transition-group": "^4.4.5",
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "@vitejs/plugin-react": "^2.2.0",
+    "eslint": "^8.27.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
+    "stylelint": "^14.14.1",
+    "stylelint-config-recess-order": "^3.0.0",
+    "typescript": "4.8.4",
+    "vite": "^3.2.4",
+    "vite-plugin-svgr": "^2.4.0"
+  }
+}
