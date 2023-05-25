@@ -12,37 +12,39 @@ import ImageArea from './ImageArea/ImageArea'
 
 const hitokotoList = [hitokoto1Png, hitokoto2Png, hitokoto3Png, hitokoto4Png]
 
-function getRandomInt(max: number) {
-  return Math.floor(Math.random() * max)
-}
+const endAudio = new Audio('/end.mp3')
 
-const intervalNumbers = [400, 400, 400, 400, 400, 400, 400, 600, 700, 800, 1000, 1200]
+const intervalNumbers = [
+  200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 600, 800, 1100, 1300,
+]
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const App = () => {
-  const intervalIdRef = useRef<number>()
-
   const goNext = useCallback((randomIndices: number[], index: number) => {
     console.log('index:', index)
     if (index >= intervalNumbers.length) return
     setTimeout(() => {
       setImageIndex(randomIndices[index])
-      const piAudio = new Audio('/pi.mp3')
-      piAudio.play()
+      if (index === intervalNumbers.length - 1) {
+        endAudio.play()
+        setIsButtonActive(true)
+      } else {
+        const piAudio = new Audio('/pi.mp3')
+        piAudio.play()
+      }
       goNext(randomIndices, index + 1)
     }, intervalNumbers[index])
   }, [])
 
   const onStartClick = useCallback(() => {
+    setIsButtonActive(false)
     const randomIndices = generateRandomList(hitokotoList.length, intervalNumbers.length)
     console.log('randomIndices:', randomIndices)
-    console.log('onStartClick')
-    // clearInterval(intervalIdRef.current)
-    // setImageIndex(1)
     goNext(randomIndices, 0)
   }, [goNext])
 
   const [imageIndex, setImageIndex] = useState<number | null>(null)
+  const [isButtonActive, setIsButtonActive] = useState(true)
 
   return (
     <div className={styles.root}>
@@ -51,7 +53,7 @@ const App = () => {
       ) : (
         <ImageArea src={hitokotoList[imageIndex]} />
       )}
-      <button className={styles.startButton} onClick={onStartClick}>
+      <button className={styles.startButton} onClick={onStartClick} disabled={!isButtonActive}>
         Start!
       </button>
     </div>
