@@ -1,30 +1,46 @@
-import { FC, useCallback, useState } from 'react'
+import { FC, useCallback, useRef, useState } from 'react'
 
 import hitokoto1Png from '@/assets/imgs/hitokoto_1.jpeg'
 import hitokoto2Png from '@/assets/imgs/hitokoto_2.jpeg'
+import hitokoto3Png from '@/assets/imgs/hitokoto_3.jpeg'
+import hitokoto4Png from '@/assets/imgs/hitokoto_4.jpeg'
 import hitokotoTemplatePng from '@/assets/imgs/hitokoto_template.jpeg'
+import { generateRandomList } from '@/utils'
 
 import styles from './App.module.css'
 import ImageArea from './ImageArea/ImageArea'
 
-const hitokotoList = [hitokoto1Png, hitokoto2Png]
+const hitokotoList = [hitokoto1Png, hitokoto2Png, hitokoto3Png, hitokoto4Png]
 
 function getRandomInt(max: number) {
   return Math.floor(Math.random() * max)
 }
 
+const intervalNumbers = [400, 400, 400, 400, 400, 400, 400, 600, 700, 800, 1000, 1200]
+
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const App = () => {
-  const onStartClick = useCallback(() => {
-    console.log('onStartClick')
-    setImageIndex(1)
-    const id = window.setInterval(() => {
-      const index = getRandomInt(hitokotoList.length)
-      setImageIndex(index)
+  const intervalIdRef = useRef<number>()
+
+  const goNext = useCallback((randomIndices: number[], index: number) => {
+    console.log('index:', index)
+    if (index >= intervalNumbers.length) return
+    setTimeout(() => {
+      setImageIndex(randomIndices[index])
       const piAudio = new Audio('/pi.mp3')
       piAudio.play()
-    }, 500)
+      goNext(randomIndices, index + 1)
+    }, intervalNumbers[index])
   }, [])
+
+  const onStartClick = useCallback(() => {
+    const randomIndices = generateRandomList(hitokotoList.length, intervalNumbers.length)
+    console.log('randomIndices:', randomIndices)
+    console.log('onStartClick')
+    // clearInterval(intervalIdRef.current)
+    // setImageIndex(1)
+    goNext(randomIndices, 0)
+  }, [goNext])
 
   const [imageIndex, setImageIndex] = useState<number | null>(null)
 
