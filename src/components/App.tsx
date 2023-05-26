@@ -1,16 +1,37 @@
 import { FC, useCallback, useRef, useState } from 'react'
 
-import hitokoto1Png from '@/assets/imgs/hitokoto_1.jpeg'
-import hitokoto2Png from '@/assets/imgs/hitokoto_2.jpeg'
-import hitokoto3Png from '@/assets/imgs/hitokoto_3.jpeg'
-import hitokoto4Png from '@/assets/imgs/hitokoto_4.jpeg'
+/* eslint-disable import/order */
+// ここから                                ↓ここを made_by_makky か made_by_atsuo に変える
+import hitokoto1Png from '@/assets/imgs/demo/hitokoto_1.jpeg'
+import hitokoto2Png from '@/assets/imgs/demo/hitokoto_2.jpeg'
+import hitokoto3Png from '@/assets/imgs/demo/hitokoto_3.jpeg'
+import hitokoto4Png from '@/assets/imgs/demo/hitokoto_4.jpeg'
+import hitokoto5Png from '@/assets/imgs/demo/hitokoto_5.jpeg'
+import hitokoto6Png from '@/assets/imgs/demo/hitokoto_6.jpeg'
+import hitokoto7Png from '@/assets/imgs/demo/hitokoto_7.jpeg'
+import hitokoto8Png from '@/assets/imgs/demo/hitokoto_8.jpeg'
+import hitokoto9Png from '@/assets/imgs/demo/hitokoto_9.jpeg'
+import hitokoto10Png from '@/assets/imgs/demo/hitokoto_10.jpeg'
+// ここまで
+/* eslint-enable import/order */
 import hitokotoTemplatePng from '@/assets/imgs/hitokoto_template.jpeg'
 import { generateRandomList } from '@/utils'
 
 import styles from './App.module.css'
 import ImageArea from './ImageArea/ImageArea'
 
-const hitokotoList = [hitokoto1Png, hitokoto2Png, hitokoto3Png, hitokoto4Png]
+const hitokotoList = [
+  hitokoto1Png,
+  hitokoto2Png,
+  hitokoto3Png,
+  hitokoto4Png,
+  hitokoto5Png,
+  hitokoto6Png,
+  hitokoto7Png,
+  hitokoto8Png,
+  hitokoto9Png,
+  hitokoto10Png,
+]
 
 const endAudio = new Audio('/end.mp3')
 
