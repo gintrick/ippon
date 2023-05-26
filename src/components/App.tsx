@@ -13,8 +13,8 @@ import hitokoto8Png from '@/assets/imgs/demo/hitokoto_8.jpeg'
 import hitokoto9Png from '@/assets/imgs/demo/hitokoto_9.jpeg'
 import hitokoto10Png from '@/assets/imgs/demo/hitokoto_10.jpeg'
 // ここまで
-/* eslint-enable import/order */
 import hitokotoTemplatePng from '@/assets/imgs/hitokoto_template.jpeg'
+/* eslint-enable import/order */
 import { generateRandomList } from '@/utils'
 
 import styles from './App.module.css'
